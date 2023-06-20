@@ -1,0 +1,21 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import MetaParams, { Default } from './example-2.stories';
+
+<!-- 
+  MDX files must finish by .stories.mdx for webpack to transform it
+  https://storybook.js.org/docs/6.5/angular/writing-docs/mdx#mdx-file-names
+-->
+
+<!--
+  Spread syntax don't work in MDX files v1
+  https://github.com/storybookjs/storybook/issues/11886
+-->
+<Meta
+  title="lib-components/Example 2"
+  component={MetaParams.component}
+  args={MetaParams.args}
+/>
+
+<Canvas>
+  <Story story={Default}></Story>
+</Canvas>

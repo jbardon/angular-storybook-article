@@ -3,66 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-app": {
-      "projectType": "application",
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "dist/my-app",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.app.json",
-            "styles": ["src/styles.scss"]
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "browserTarget": "my-app:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "my-app:build:production"
-            },
-            "development": {
-              "browserTarget": "my-app:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        }
-      }
-    },
     "lib-components": {
       "projectType": "library",
       "root": "projects/lib-components",
@@ -72,17 +12,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/lib-components/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/lib-components/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/lib-components/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
+            "project": "projects/lib-components/ng-package.json",
+            "tsConfig": "projects/lib-components/tsconfig.lib.json"
+          }
         }
       }
     },
@@ -112,8 +44,5 @@
         }
       }
     }
-  },
-  "cli": {
-    "analytics": false
   }
 }

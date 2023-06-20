@@ -6,9 +6,10 @@
     "build": "#Storybook compiler does not seem to work with npm workspaces"
   },
   "peerDependencies": {
-    "@angular/common": "~16.1.0",
-    "@angular/core": "~16.1.0",
-    "@storybook/angular": "^7.0.22",
-    "@storybook/addon-docs": "^7.0.22"
+    "@angular/common": "~15.2.9",
+    "@angular/core": "~15.2.9",
+    "@storybook/addon-essentials": "^6.5.16",
+    "@storybook/addon-links": "^6.5.16",
+    "@storybook/angular": "^6.5.16"
   }
 }

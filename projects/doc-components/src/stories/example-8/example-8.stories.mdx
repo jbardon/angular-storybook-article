@@ -1,0 +1,50 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs';
+import MetaParams, { Template } from './example-8.stories';
+import fileSource from '!raw-loader!./file-code.txt';
+
+<Meta
+  title="lib-components/Example 8"
+  component={MetaParams.component}
+  decorators={MetaParams.decorators}
+  args={MetaParams.args}
+  parameters={{
+    docs: {
+      source: {
+        language: 'javascript',
+        format: true,
+      },
+    },
+  }}
+/>
+
+<Canvas withSource="none">
+  <Story
+    name="No code"
+    args={{
+      mockMessage: 'No code'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+export const inlineSource = `Example5Service.toast('Inline code', 5_000);`;
+
+<Canvas mdxSource={inlineSource}>
+  <Story
+    name="Inline code"
+    args={{
+      mockMessage: 'Inline code'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+<Canvas mdxSource={fileSource}>
+  <Story
+    name="File code"
+    args={{
+      mockMessage: 'File code'
+    }}>
+    {Template.bind({})}
+  </Story>
+</Canvas>

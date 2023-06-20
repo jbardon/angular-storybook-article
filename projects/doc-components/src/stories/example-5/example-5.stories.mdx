@@ -1,0 +1,23 @@
+import { Meta, Story } from '@storybook/addon-docs';
+import { Example5Component } from './example-5.component';
+
+<!-- Fully custom doc page for very complex use cases -->
+
+<Meta
+  title="lib-components/Example 5"
+  component={Example5Component}
+  parameters={{
+    // Hide canvas tab and open doc tab by default
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+    viewMode: 'docs',
+  }}
+/>
+
+export const Template = () => ({});
+
+<!-- Same name as page title to avoid having side menu sub item -->
+<Story name="Example 5">{Template.bind({})}</Story>
