@@ -9,7 +9,6 @@
     "@angular/common": "~16.1.0",
     "@angular/core": "~16.1.0",
     "@storybook/angular": "^7.0.22",
-    "@storybook/addon-docs": "^7.0.22",
-    "@storybook/preset-scss": "^1.0.3"
+    "@storybook/addon-docs": "^7.0.22"
   }
 }

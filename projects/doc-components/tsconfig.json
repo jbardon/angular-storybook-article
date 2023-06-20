@@ -7,7 +7,7 @@
     // Storybook need sources instead of compiled libraries because
     // it uses static analysis on TS Angular annotations
     "paths": {
-      "@smartadserver/ngx-pumpkin": [
+      "lib-components": [
         "projects/lib-components/src/public-api.ts"
       ]
     }
