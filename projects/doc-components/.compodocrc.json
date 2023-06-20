@@ -1,0 +1,9 @@
+{
+  "$schema": "../../node_modules/@compodoc/compodoc/src/config/schema.json",
+  "exportFormat": "json",
+  "minimal": true,
+  "disableLifeCycleHooks": true,
+  "disablePrivate": true,
+  "disableProtected": true,
+  "disableInternal": true
+}
