@@ -9,6 +9,7 @@
     "@angular/common": "~16.1.0",
     "@angular/core": "~16.1.0",
     "@storybook/angular": "^7.0.22",
-    "@storybook/addon-docs": "^7.0.22"
+    "@storybook/addon-essentials": "^7.0.22",
+    "@storybook/addon-links": "^7.0.27"
   }
 }

@@ -1,0 +1,102 @@
+import { Directive, Injectable, Input, inject } from '@angular/core';
+import {Meta, moduleMetadata, StoryObj} from '@storybook/angular';
+import { action } from '@storybook/addon-actions';
+import { Example3Component, ExampleService, SERVICE, provideService } from 'lib-components';
+import { BehaviorSubject } from 'rxjs';
+
+@Injectable({ providedIn: 'root' })
+class MyService implements ExampleService {
+  value$ = new BehaviorSubject('');
+
+  getValue() {
+    return this.value$.getValue();
+  }
+}
+
+// Use a directive instead of a custom component for storybook
+// to show the real component documentation
+@Directive({
+  selector: '[mockDirective]',
+  providers: [provideService(MyService)]
+})
+class MockDirective {
+  service = inject<MyService>(SERVICE);
+
+  @Input() set mockValue(value: string) {
+    this.service.value$.next(value);
+  }
+}
+
+const meta: Meta<Example3Component> = {
+  title: 'lib-components/Example 6',
+  component: Example3Component,
+  decorators: [
+    moduleMetadata({
+      declarations: [MockDirective],
+    })
+  ],
+  args: {
+    name: 'Example6'
+  },
+  argTypes: {
+    // Don't show in the controls list since its internal and
+    // not part of the component documentation
+    mockValue: { 
+      table: {
+        disable: true,
+      },
+    }
+  } as any
+};
+
+export default meta;
+
+type Story = StoryObj<Example3Component & {
+  mockValue: string;
+}>;
+
+/**
+ * Major downside of using template property is to
+ * forward each input and outputs manually to the component
+ */
+const Template: Story = {
+  render: args => ({
+    props: {
+      ...args,
+      mockClick: action('click'),
+    },
+    /*
+      This is an Angular template, don't use string literal to make it dynamic
+      All props are directly accessible in the template globally
+    */
+    template: `
+      <lib-example-3
+        mockDirective
+        [mockValue]="mockValue"
+        [name]="name"
+        (click)="mockClick($event)"/>`
+  })
+};
+
+export const Default: Story = {
+  ...Template,
+  args: {
+    mockValue: 'directive'
+  }
+};
+
+export const EditMock: Story = {
+  ...Template,
+  args: {
+    mockValue: 'edit from control',
+  },
+  argTypes: {
+    mockValue: {
+      name: '[Mock] ExampleService.getValue()',
+      description: 'Not part of component API',
+      table: {
+        disable: false,
+      },
+    }
+  }
+}

@@ -1,0 +1,21 @@
+- Example 1: Basic creation of stories from a simple component, override inputs, listen to outputs
+    - stories, args, controls
+- Example 2: Split between TS and MDX files
+    - ts vs mdx split but import in mdx (https://github.com/storybookjs/storybook/issues/11886)
+- Example 3: TBD
+    - decorators etc at all levels
+- Example 4: Include markdown file
+    - main.js: transclude markdown for readme page
+    - link to other doc pages
+- Example 5: Replace doc page with custom Angular component
+    - page as doc with full component rendering and canvas hidden
+- Example 6: Use directive for DI
+    - use template, no backtick => angular syntax works
+    - use directives for DI
+- Example 7: Compodoc and controls
+    - be careful of exported stuff see compodoc with private/public/internal
+    - tip for canvas disapear: A or D key, reload with cache
+- Example 8: Full directive with mock controls
+    - full example code replace/remove
+    - use meta component for complex cases
+    - modal example

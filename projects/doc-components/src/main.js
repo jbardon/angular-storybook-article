@@ -1,18 +1,10 @@
 module.exports = {
   stories: [
     './stories/**/*.stories.ts',
-    './stories/**/*.stories.mdx',
-    './stories/**/*.stories.md',
+    './stories/**/*.mdx', // Starting SB7 no .stories for MDX
   ],
-  /*
   addons: [
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        transcludeMarkdown: true,
-      },
-    },
+    '@storybook/addon-essentials',
   ],
-  */
   framework: '@storybook/angular',
 };
