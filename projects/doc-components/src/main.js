@@ -23,7 +23,14 @@ module.exports = {
     // https://github.com/storybookjs/storybook/issues/18176#issuecomment-1124161889
     modernInlineRender: true,
   },
-  framework: '@storybook/angular',
+  framework: {
+    name: '@storybook/angular',
+    options: {
+      // Fix storybook compilation issue searching for ngcc
+      // Not available before 7.0
+      enableIvy: false,
+    }
+  },
   core: {
     // Enable opt-in Webpack 5 for Angular 12 compatibility
     // https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#webpack-5
