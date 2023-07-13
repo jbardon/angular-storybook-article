@@ -25,7 +25,8 @@ module.exports = {
   },
   framework: '@storybook/angular',
   core: {
-    // Enable opt-in Webpack 5 for Angular 12 compatibility
+    // Angular < 12 comes with Webpack 5
+    // Storybook uses v4 by default so opt-in for optional v5
     // https://github.com/storybookjs/storybook/blob/next/MIGRATION.md#webpack-5
     builder: 'webpack5', 
   },
