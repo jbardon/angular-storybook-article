@@ -1,24 +1,20 @@
 import { Component, Directive, HostListener, Input, inject } from '@angular/core';
 import {Meta, moduleMetadata, StoryObj} from '@storybook/angular';
-import { Example5Service } from 'lib-components';
+import { MyToasterService} from 'lib-components';
 
 @Directive({
   selector: 'button[mockDirective]',
   standalone: true,
 })
 class MockDirective {
-  toastService = inject(Example5Service);
+  toastService = inject(MyToasterService);
 
-  @Input('mockMessage') message = '';
-  @Input('mockTimeoutMs') timeoutMs: number | undefined;
+  @Input('mockDescription') description = '';
+  @Input('mockTitle') title?: string;
 
   @HostListener('click')
   openToaster() {
-    this.toastService.toast(this.message, this.timeoutMs);
-  }
-
-  constructor(){
-    console.log('teste')
+    this.toastService.toast(this.description, this.title);
   }
 }
 
@@ -38,7 +34,7 @@ const meta: Meta<NoopComponent> = {
     })
   ],
   args: {
-    mockTimeoutMs: 5_000,
+    mockTitle: 'Title',
   },
   parameters: {
     docs: {
@@ -52,8 +48,8 @@ const meta: Meta<NoopComponent> = {
 export default meta;
 
 type Story = StoryObj<NoopComponent & {
-  mockMessage: string;
-  mockTimeoutMs: number;
+  mockDescription: string;
+  mockTitle?: string;
 }>
 
 const Template: Story = {
@@ -61,28 +57,28 @@ const Template: Story = {
     props: args,
     template: `
       <button mockDirective
-              [mockMessage]="mockMessage"
-              [mockTimeoutMs]="mockTimeoutMs">Open</button>`
+              [mockDescription]="mockDescription"
+              [mockTitle]="mockTitle">Open</button>`
   })
 };
 
 export const NoCode: Story = {
   ...Template,
   args: {
-    mockMessage: 'No code'
+    mockDescription: 'No code'
   }
 };
 
 export const InlineCode: Story = {
   ...Template,
   args: {
-    mockMessage: 'Inline code'
+    mockDescription: 'Inline code'
   }
 };
 
 export const FileCode: Story = {
   ...Template,
   args: {
-    mockMessage: 'File code'
+    mockDescription: 'File code'
   }
 };

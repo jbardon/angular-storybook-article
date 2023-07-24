@@ -1,8 +1,7 @@
 /*
  * Public API Surface of lib-components
  */
-export * from './lib/example-1.component';
-export * from './lib/example-2.component';
-export * from './lib/example-3.component';
-export * from './lib/example-4.component';
-export * from './lib/example-5.service';
+export * from './lib/components/example-4.component';
+export * from './lib/components/my-toaster.component';
+export * from './lib/my-toaster.providers';
+export * from './lib/services/my-toaster.service';

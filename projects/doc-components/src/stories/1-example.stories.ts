@@ -1,38 +1,35 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { Example1Component } from 'lib-components';
+import { MyToasterComponent } from 'lib-components';
 
 /**
  * How to write very simple stories
  * by giving custom args names
  */
-const meta: Meta<Example1Component> = {
+const meta: Meta<MyToasterComponent> = {
   title: 'lib-components/Example 1',
-  component: Example1Component,
+  component: MyToasterComponent,
   args: {
-    name: 'Example1'
+    description: 'Meta description'
   }
 };
 
 export default meta;
 
-type Story = StoryObj<Example1Component>;
+type Story = StoryObj<MyToasterComponent>;
 export const Default: Story = {};
 
-export const CustomName: Story = {
+export const FromStory: Story = {
   args: {
-    name: 'CustomName'
+    description: 'Story description'
   }
 };
 
 const Template: Story = {
-  render: args => ({
-    props: args
-  }),
+  args: {
+    description: 'Template description'
+  }
 };
 
 export const FromTemplate: Story = {
   ...Template,
-  args: {
-    name: 'FromTemplate'
-  }
 };

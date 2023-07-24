@@ -1,38 +1,38 @@
-import { Meta, StoryFn, StoryObj, moduleMetadata } from '@storybook/angular';
-import { Example2Component, providePrefix } from 'lib-components';
+import { Meta, StoryObj, moduleMetadata } from '@storybook/angular';
+import { MyToasterComponent, provideDefaultTitle } from 'lib-components';
 
-const meta: Meta<Example2Component> = {
+const meta: Meta<MyToasterComponent> = {
   title: 'lib-components/Example 3',
-  component: Example2Component,
+  component: MyToasterComponent,
   decorators: [
     moduleMetadata({
       providers: [
-        providePrefix('[Meta]'),
+        provideDefaultTitle('Meta title'),
       ],
     })
   ],
   args: {
-    name: 'Example3'
+    description: 'Example 3'
   },
   argTypes: {
-    emitClickEvent: {
+    close: {
       control: false,
     }
   }
 };
 
 export default meta;
-type Story = StoryObj<Example2Component & {
-  mockPrefix: string;
+type Story = StoryObj<MyToasterComponent & {
+  mockDefaultTitle: string;
 }>;
 
-export const Default: Story = {};
+export const MetaLevel: Story = {};
 
-export const StoryOverride: Story = {
+export const StoryLevel: Story = {
   decorators: [
     moduleMetadata({
       providers: [
-        providePrefix('[Story]')
+        provideDefaultTitle('Story title')
       ]
     })
   ]
@@ -43,17 +43,17 @@ const Template: Story = {
     props: args,
     moduleMetadata: {
       providers: [
-        providePrefix(args.mockPrefix),
+        provideDefaultTitle(args.mockDefaultTitle),
       ]
     }
   })
 };
 
-export const TemplateOverride: Story = {
+export const TemplateLevel: Story = {
   ...Template,
   args: {
     // Advice to prefix variable names with mock so developers
     // don't mix them with real component properties
-    mockPrefix: '[Template]',
+    mockDefaultTitle: 'Template title',
   }
 };

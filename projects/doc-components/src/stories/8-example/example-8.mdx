@@ -6,7 +6,7 @@ import fileSource from './file-code.txt?raw';
 
 <Canvas of={stories.NoCode} sourceState="none"/>
 
-export const inlineSource = `Example5Service.toast('Inline code', 5_000);`;
+export const inlineSource = `MyToasterService.toast('Inline code', 'Title');`;
 
 <Canvas of={stories.InlineCode} source={{code: inlineSource}}/>
 

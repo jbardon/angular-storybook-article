@@ -1,14 +1,19 @@
 import { Directive, Injectable, Input, inject } from '@angular/core';
 import {Meta, moduleMetadata, StoryObj} from '@storybook/angular';
 import { action } from '@storybook/addon-actions';
-import { Example3Component, ExampleService, SERVICE, provideService } from 'lib-components';
+import {MyToasterComponent} from 'lib-components';
 import { BehaviorSubject } from 'rxjs';
+import {
+  IToasterConfigService,
+  provideConfigService,
+  TOASTER_CONFIG_SERVICE
+} from 'projects/lib-components/src/lib/services/my-toaster-config.service';
 
 @Injectable({ providedIn: 'root' })
-class MyService implements ExampleService {
+class MyService implements IToasterConfigService {
   value$ = new BehaviorSubject('');
 
-  getValue() {
+  getTitle() {
     return this.value$.getValue();
   }
 }
@@ -17,31 +22,31 @@ class MyService implements ExampleService {
 // to show the real component documentation
 @Directive({
   selector: '[mockDirective]',
-  providers: [provideService(MyService)]
+  providers: [provideConfigService(MyService)]
 })
 class MockDirective {
-  service = inject<MyService>(SERVICE);
+  service = inject<MyService>(TOASTER_CONFIG_SERVICE);
 
-  @Input() set mockValue(value: string) {
+  @Input() set mockTitle(value: string) {
     this.service.value$.next(value);
   }
 }
 
-const meta: Meta<Example3Component> = {
+const meta: Meta<MyToasterComponent> = {
   title: 'lib-components/Example 6',
-  component: Example3Component,
+  component: MyToasterComponent,
   decorators: [
     moduleMetadata({
       declarations: [MockDirective],
     })
   ],
   args: {
-    name: 'Example6'
+    description: 'Example 6'
   },
   argTypes: {
-    // Don't show in the controls list since its internal and
+    // Don't show in the controls list since it's internal and
     // not part of the component documentation
-    mockValue: { 
+    mockTitle: {
       table: {
         disable: true,
       },
@@ -51,8 +56,8 @@ const meta: Meta<Example3Component> = {
 
 export default meta;
 
-type Story = StoryObj<Example3Component & {
-  mockValue: string;
+type Story = StoryObj<MyToasterComponent & {
+  mockTitle: string;
 }>;
 
 /**
@@ -63,36 +68,36 @@ const Template: Story = {
   render: args => ({
     props: {
       ...args,
-      mockClick: action('click'),
+      mockClose: action('close'),
     },
     /*
       This is an Angular template, don't use string literal to make it dynamic
       All props are directly accessible in the template globally
     */
     template: `
-      <lib-example-3
+      <my-toaster
         mockDirective
-        [mockValue]="mockValue"
-        [name]="name"
-        (click)="mockClick($event)"/>`
+        [mockTitle]="mockTitle"
+        [description]="description"
+        (close)="mockClose($event)"/>`
   })
 };
 
 export const Default: Story = {
   ...Template,
   args: {
-    mockValue: 'directive'
+    mockTitle: 'Directive title'
   }
 };
 
 export const EditMock: Story = {
   ...Template,
   args: {
-    mockValue: 'edit from control',
+    mockTitle: 'Edit from control',
   },
   argTypes: {
-    mockValue: {
-      name: '[Mock] ExampleService.getValue()',
+    mockTitle: {
+      name: '[Mock] IToasterConfigService.getValue()',
       description: 'Not part of component API',
       table: {
         disable: false,

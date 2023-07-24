@@ -1,6 +1,5 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Canvas, Story } from '@storybook/blocks';
 import * as stories from './example-2.stories';
-import {Canvas} from "@storybook/addon-docs";
 
 {/* Changed from addon-docs to blocks */}
 
@@ -9,3 +8,8 @@ import {Canvas} from "@storybook/addon-docs";
 <Meta of={stories}/>
 
 <Canvas of={stories.Default}/>
+
+<Canvas>
+    <Story of={stories.Default}></Story>
+    <Story of={stories.WithTitle}></Story>
+</Canvas>

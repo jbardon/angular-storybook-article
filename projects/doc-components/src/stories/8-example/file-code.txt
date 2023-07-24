@@ -1,1 +1,1 @@
-Example5Service.toast('File code', 5_000);
+MyToasterService.toast('File code', 'Title');

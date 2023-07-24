@@ -1,18 +1,25 @@
 import { Meta, StoryObj } from '@storybook/angular';
-import { Example1Component } from 'lib-components';
+import { MyToasterComponent } from 'lib-components';
 
 /**
  * How to have nice MDX doc but keep TS code
  */
-const meta: Meta<Example1Component> = {
+const meta: Meta<MyToasterComponent> = {
   title: 'lib-components/Example 2',
-  component: Example1Component,
+  component: MyToasterComponent,
   args: {
-    name: 'Example2'
+    description: 'Example 2'
   }
 };
 
 export default meta;
 
-type Story = StoryObj<Example1Component>;
+type Story = StoryObj<MyToasterComponent>;
+
 export const Default: Story = {};
+
+export const WithTitle: Story = {
+  args: {
+    title: 'MyTitle'
+  }
+};

@@ -4,6 +4,11 @@
     "types": ["node"],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
+
+    // To be removed: convenient for test
+    "paths": {
+      "lib-components": ["projects/lib-components/src/public-api.ts"]
+    }
   },
   "include": ["./src/**/*.ts", "./src/**/*.js"]
 }

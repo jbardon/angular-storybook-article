@@ -6,7 +6,7 @@ setCompodocJson(docJson);
 export const parameters = {
   layout: 'centered',
   actions: {
-    argTypesRegex: '^on[A-Z].*',
+    argTypesRegex: 'close',
   },
   controls: {
     expanded: true,
